@@ -40,7 +40,6 @@ let velx2 = [];
 let vely2 = [];
 let velz2 = [];
 
-
 let posx3 = [];
 let posy3 = [];
 let posz3 = [];
@@ -51,12 +50,22 @@ let velx3 = [];
 let vely3 = [];
 let velz3 = [];
 
+let posx4 = [];
+let posy4 = [];
+let posz4 = [];
+let posx44 = [];
+let posy44 = [];
+let posz44 = [];
+let velx4 = [];
+let vely4 = [];
+let velz4 = [];
 
 let img;
 
 let lideranças = [];
 let etnomidia = [];
 let artes = [];
+let musica = [];
 
 // let conX, conY;
 
@@ -80,16 +89,6 @@ function preload() {
 
 function setup() {
   createCanvas(1080, 720, WEBGL);
-
-  //physics = new VerletPhysics2D();
-  //physics.addBehavior(new GravityBehavior(new Vec2D(0, 0.01)));
-  //physics.setWorldBounds(new Rect(0, 0, width, height));
-
-  //resist = new Blanket(40, 40, 200, 0.1, 60, 100);
-
-  // b = new Blanket(20, 20, 150, 0.05, 300, 100);
-  // b2 = new Blanket(60, 60, 150, 0.01, 300, 100);
-  // b3 = new Blanket(30, 30, 150, 0.01, 300, 200);
 
   for (let i = 0; i < 9; i++) {
     posx1[i] = width/2+cos(i)*300;
@@ -131,6 +130,20 @@ function setup() {
     velz3[i] = 4.7;
   }
 
+  for (let i = 0; i < 12; i++) {
+    posx4[i] = width/1.5+sin(i)*253;
+    posy4[i] = height/2+cos(i)*333;
+    posz4[i] = 0-noise(i)*450;
+
+    posx44[i] = width/1.5+sin(i)*253;
+    posy44[i] = height/2+cos(i)*333;
+    posz44[i] = 0-noise(i)*450;
+
+    velx4[i] = 3.1;
+    vely4[i] = 12;
+    velz4[i] = 4.7;
+  }
+
   font = loadFont('data/SourceSansPro-Regular.otf');
   textFont(font);
   textSize(40);
@@ -150,7 +163,7 @@ function draw() {
   strokeWeight(1);
 
   rect(3, 3, width-4, height-4);
-  //textFont(font1);
+
   //tela inicial --------------------------------
   push();
   if (frameCount > 0 && frameCount < 2*30) {
@@ -181,12 +194,8 @@ function draw() {
 
   translate(0, 0, posZ);
 
-  // posX = constrain(posX, -600, 600);
-  // posY = constrain(posY, -600, 600);
-
   strokeWeight(2);
 
-  //textFont(font2);
   if (frameCount > 3*30) {
     translate(0, 0, 0);
     beginShape();
@@ -320,6 +329,7 @@ function draw() {
       curveVertex(posx2[i]+cx, posy2[i]+ny, -200+posz2[i]+nz);
     }
     endShape();
+
     beginShape();
     stroke(50, 10, 200, 150);
     for (let  i = 0; i < 10; i ++) {
@@ -367,7 +377,7 @@ function draw() {
         }
       }
       if (posz3[i] - posz33[i] > 0) {
-        posz3[i]-= velz2[i];
+        posz3[i]-= velz3[i];
         if (posz3[i] <= posz33[i]) {
           posz3[i] = posz33[i];
         }
@@ -386,9 +396,74 @@ function draw() {
     }
     endShape();
 
+    beginShape();
+    stroke(150, 110, 200, 150);
+    for (let  i = 0; i < 12; i ++) {
+
+      if (mouseIsPressed && posZ > 800 && posZ < 1200) {
+        if (dist(posx4[i], posy4[i], mouseX+cos(i*0.1)*10, mouseY+sin(i*0.1)*10) < 180) {
+          if (posx4[i] - mouseX > 20) {
+            posx4[i] = posx4[i]+20;
+          } else {
+            posx4[i] = posx4[i]-20;
+          }
+          if (posy4[i] - mouseY > 20) {
+            posy4[i] = posy4[i]+20;
+          } else {
+            posy4[i] = posy4[i]-20;
+          }
+        }
+      }
+
+      //obtendo a diferença e testando
+      if (posx4[i] - posx44[i] > 0) {
+        //se a diferença for maior que 0 a posição 1 decrementa
+        posx4[i]-= velx4[i];
+        //quando a posição 1 decresce até a posição 2, permanece nesta
+        if (posx4[i] <= posx44[i]) {
+          posx4[i] = posx44[i];
+        }
+      } else {
+        //se a diferença for menor que 0 a posição 1 incrementa
+        posx4[i]+=velx4[i];
+        //quando a posição 1 alcança a posição 2, permanece nesta
+        if (posx4[i] >= posx44[i]) {
+          posx4[i] = posx44[i];
+        }
+      }
+      if (posy4[i] - posy44[i] > 0) {
+        posy4[i]-=vely4[i];
+        if (posy4[i] <= posy44[i]) {
+          posy4[i] = posy44[i];
+        }
+      } else {
+        posy4[i]+=vely4[i];
+        if (posy4[i] >= posy44[i]) {
+          posy4[i] = posy44[i];
+        }
+      }
+      if (posz4[i] - posz44[i] > 0) {
+        posz4[i]-= velz4[i];
+        if (posz4[i] <= posz44[i]) {
+          posz4[i] = posz44[i];
+        }
+      } else {
+        posz4[i] += velz4[i];
+        if (posz4[i] >= posz44[i]) {
+          posz4[i] = posz44[i];
+        }
+      }
+
+      let cx = cos(posx4[i]*0.01+t)*80;
+      let ny = map(noise(posy4[i]*0.01+t), 0, 1, -1, 1)*80;
+      let nz = noise(posz4[i]*0.01+t)*80;
+
+      curveVertex(posx4[i]+cx, posy4[i]+ny, -400+posz4[i]+nz);
+    }
+    endShape();
+
     //LIDERANÇAS-------------------------------------------------------------------
     for (let  i = 0; i < 9; i ++) {
-      //b.springs[i].out();
 
       let cx = cos(posx1[i]*0.01+t)*80;
       let ny = map(noise(posy1[i]*0.01+t), 0, 1, -1, 1)*80;
@@ -413,7 +488,6 @@ function draw() {
       let ny1 = map(noise(posy1[1]*0.01+t), 0, 1, -1, 1)*80;
       let nz1 = noise(posz1[1]*0.01+t)*80;
 
-      //textAlign(LEFT, BOTTOM);
       if (dist(posx1[1]+cx1, posy1[1]+ny1, mouseX, mouseY) < 50 && posZ > -100 && posZ < 400) {
         fill(240);
         img = createImg('img/sonia-guajajarajpg-03052021211741293.jpeg');
@@ -748,7 +822,7 @@ function draw() {
       text("Tingui Botó", posx2[13]+cx13, posy2[13]+ny13);
       pop();
     }
-    //
+
     ////ARTES-------------------------------------------------------------------
     for (let  i = 0; i < 10; i ++) {
 
@@ -894,6 +968,184 @@ function draw() {
       push();
       translate(0, 0, -400+posz3[8]-nz8);
       text("Premio PIPA", posx3[8]+cx8, posy3[8]+ny8);
+      pop();
+    }
+
+    ////MUSICA-------------------------------------------------------------------
+    for (let  i = 0; i < 12; i ++) {
+
+      let cx = cos(posx4[i]*0.01+t)*80;
+      let ny = map(noise(posy4[i]*0.01+t), 0, 1, -1, 1)*80;
+      let nz = noise(posz4[i]*0.01+t)*80;
+
+      noStroke();
+      fill(200, 0, 255);
+      if (i >= 1 && i <= 10) {
+        push();
+        translate(0, 0, -400+posz4[i]+nz);
+        ellipse(posx4[i]+cx, posy4[i]+ny, 8, 8);
+        pop();
+      }
+
+      let cx11 = cos(posx4[11]*0.01+t)*80;
+      let ny11 = map(noise(posy4[11]*0.01+t), 0, 1, -1, 1)*80;
+      textSize(20);
+      fill(240);
+      push();
+      translate(0, 0, -400);
+      text("PRODUÇÂO MUSICAL", posx4[11]+cx11, posy4[11]+ny11);
+      pop();
+
+      textSize(10);
+
+      let cx1 = cos(posx4[1]*0.01+t)*80;
+      let ny1 = map(noise(posy4[1]*0.01+t), 0, 1, -1, 1)*80;
+      let nz1 = noise(posz4[1]*0.01+t)*80;
+      if (dist(posx4[1]+cx1, posy4[1]+ny1, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[1] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[1] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[1]-nz1);
+      text("CUNUMI MC", posx4[1]+cx1, posy4[1]+ny1);
+      pop();
+
+      let cx2 = cos(posx4[2]*0.01+t)*80;
+      let ny2 = map(noise(posy4[2]*0.01+t), 0, 1, -1, 1)*80;
+      let nz2 = noise(posz4[2]*0.01+t)*80;
+      if (dist(posx4[2]+cx2, posy4[2]+ny2, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[2] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[2] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[2]-nz2);
+      text("Gean Ramos", posx4[2]+cx2, posy4[2]+ny2);
+      pop();
+
+      let cx3 = cos(posx4[3]*0.01+t)*80;
+      let ny3 = map(noise(posy4[3]*0.01+t), 0, 1, -1, 1)*80;
+      let nz3 = noise(posz4[3]*0.01+t)*80;
+      if (dist(posx4[3]+cx3, posy4[3]+ny3, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[3] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[3] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[3]-nz3);
+      text("txaná ikakuru", posx4[3]+cx3, posy4[3]+ny3);
+      pop();
+
+      let cx4 = cos(posx4[4]*0.01+t)*80;
+      let ny4 = map(noise(posy4[4]*0.01+t), 0, 1, -1, 1)*80;
+      let nz4 = noise(posz4[4]*0.01+t)*80;
+      if (dist(posx4[4]+cx4, posy4[4]+ny4, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[4] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[4] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[4]-nz4);
+      text("katu mirim", posx4[4]+cx4, posy4[4]+ny4);
+      pop();
+
+      let cx5 = cos(posx4[5]*0.01+t)*80;
+      let ny5 = map(noise(posy4[5]*0.01+t), 0, 1, -1, 1)*80;
+      let nz5 = noise(posz4[5]*0.01+t)*80;
+      if (dist(posx4[5]+cx5, posy4[5]+ny5, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[5] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[5] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[5]-nz5);
+      text("kandu puri", posx4[5]+cx5, posy4[5]+ny5);
+      pop();
+
+      let cx6 = cos(posx4[6]*0.01+t)*80;
+      let ny6 = map(noise(posy4[6]*0.01+t), 0, 1, -1, 1)*80;
+      let nz6 = noise(posz4[6]*0.01+t)*80;
+      if (dist(posx4[6]+cx6, posy4[6]+ny6, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[6] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[6] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[6]-nz6);
+      text("ian wapichana", posx4[6]+cx6, posy4[6]+ny6);
+      pop();
+
+      let cx7 = cos(posx4[7]*0.01+t)*80;
+      let ny7 = map(noise(posy4[7]*0.01+t), 0, 1, -1, 1)*80;
+      let nz7 = noise(posz4[7]*0.01+t)*80;
+      if (dist(posx4[7]+cx7, posy4[7]+ny7, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[7] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[7] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[7]-nz7);
+      text("kae guajajara", posx4[7]+cx7, posy4[7]+ny7);
+      pop();
+
+      let cx8 = cos(posx4[8]*0.01+t)*80;
+      let ny8 = map(noise(posy4[8]*0.01+t), 0, 1, -1, 1)*80;
+      let nz8 = noise(posz4[8]*0.01+t)*80;
+      if (dist(posx4[8]+cx8, posy4[8]+ny8, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[8] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[8] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[8]-nz8);
+      text("brisa flow", posx4[8]+cx8, posy4[8]+ny8);
+      pop();
+
+      let cx9 = cos(posx4[9]*0.01+t)*80;
+      let ny9 = map(noise(posy4[9]*0.01+t), 0, 1, -1, 1)*80;
+      let nz9 = noise(posz4[9]*0.01+t)*80;
+      if (dist(posx4[9]+cx8, posy4[9]+ny9, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[9] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[9] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[9]-nz9);
+      text("paka noe koi", posx4[9]+cx9, posy4[9]+ny9);
+      pop();
+
+      let cx10 = cos(posx4[10]*0.01+t)*80;
+      let ny10 = map(noise(posy4[10]*0.01+t), 0, 1, -1, 1)*80;
+      let nz10 = noise(posz4[10]*0.01+t)*80;
+      if (dist(posx4[10]+cx10, posy4[10]+ny10, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        musica[10] = true;
+      } else {
+        fill(180, 20, 180);
+        musica[10] = false;
+      }
+      push();
+      translate(0, 0, -400+posz4[10]-nz10);
+      text("Lindaura Xukuru Kariri", posx4[10]+cx10, posy4[10]+ny10);
       pop();
     }
 
