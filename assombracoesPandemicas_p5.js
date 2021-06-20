@@ -1,4 +1,3 @@
-
 let telai;
 //let onca;
 var amazonia;
@@ -60,12 +59,23 @@ let velx4 = [];
 let vely4 = [];
 let velz4 = [];
 
+let posx5 = [];
+let posy5 = [];
+let posz5 = [];
+let posx55 = [];
+let posy55 = [];
+let posz55 = [];
+let velx5 = [];
+let vely5 = [];
+let velz5 = [];
+
 let img;
 
 let lideranças = [];
 let etnomidia = [];
 let artes = [];
 let musica = [];
+let opressao = [];
 
 // let conX, conY;
 
@@ -82,7 +92,6 @@ var font;
 
 function preload() {
   amazonia = loadImage('img/amaz.jpg');
-
   telai = loadImage('img/tela_inicial.jpg');
 }
 
@@ -103,6 +112,7 @@ function setup() {
     vely1[i] = 7;
     velz1[i] = 11;
   }
+
   for (let i = 0; i < 15; i++) {
     posx2[i] = width/2+cos(i)*350;
     posy2[i] = height/2+map(noise(i), 0, 1, -1, 1)*333;
@@ -116,6 +126,7 @@ function setup() {
     vely2[i] = 12;
     velz2[i] = 10.7;
   }
+
   for (let i = 0; i < 10; i++) {
     posx3[i] = width/2+map(noise(i), 0, 1, -1, 1)*253;
     posy3[i] = height/2+cos(i)*333;
@@ -142,6 +153,20 @@ function setup() {
     velx4[i] = 3.1;
     vely4[i] = 12;
     velz4[i] = 4.7;
+  }
+
+  for (let i = 0; i < 28; i++) {
+    posx5[i] = width/2+cos(i)*width;
+    posy5[i] = height/2+sin(i)*height;
+    posz5[i] = 0-noise(i)*450;
+
+    posx55[i] = width/2+cos(i)*width;
+    posy55[i] = height/2+sin(i)*height;
+    posz55[i] = 0-noise(i)*450;
+
+    velx5[i] = 7.1;
+    vely5[i] = 11;
+    velz5[i] = 7.7;
   }
 
   font = loadFont('data/SourceSansPro-Regular.otf');
@@ -461,6 +486,72 @@ function draw() {
       curveVertex(posx4[i]+cx, posy4[i]+ny, -400+posz4[i]+nz);
     }
     endShape();
+
+    beginShape(TRIANGLE_STRIP);
+    stroke(20);
+    for (let  i = 0; i < 28; i ++) {
+
+      if (mouseIsPressed && posZ > 0 && posZ < 400) {
+        if (dist(posx5[i], posy5[i], mouseX+cos(i*0.1)*10, mouseY+sin(i*0.1)*10) < 180) {
+          if (posx5[i] - mouseX > 20) {
+            posx5[i] = posx5[i]+20;
+          } else {
+            posx5[i] = posx5[i]-20;
+          }
+          if (posy5[i] - mouseY > 20) {
+            posy5[i] = posy5[i]+20;
+          } else {
+            posy5[i] = posy5[i]-20;
+          }
+        }
+      }
+
+      //obtendo a diferença e testando
+      if (posx5[i] - posx55[i] > 0) {
+        //se a diferença for maior que 0 a posição 1 decrementa
+        posx5[i]-= velx5[i];
+        //quando a posição 1 decresce até a posição 2, permanece nesta
+        if (posx5[i] <= posx55[i]) {
+          posx5[i] = posx55[i];
+        }
+      } else {
+        //se a diferença for menor que 0 a posição 1 incrementa
+        posx5[i]+=velx5[i];
+        //quando a posição 1 alcança a posição 2, permanece nesta
+        if (posx5[i] >= posx55[i]) {
+          posx5[i] = posx55[i];
+        }
+      }
+      if (posy5[i] - posy55[i] > 0) {
+        posy5[i]-=vely5[i];
+        if (posy5[i] <= posy55[i]) {
+          posy5[i] = posy55[i];
+        }
+      } else {
+        posy5[i]+=vely5[i];
+        if (posy5[i] >= posy55[i]) {
+          posy5[i] = posy55[i];
+        }
+      }
+      if (posz5[i] - posz55[i] > 0) {
+        posz5[i]-= velz5[i];
+        if (posz5[i] <= posz55[i]) {
+          posz5[i] = posz55[i];
+        }
+      } else {
+        posz5[i] += velz5[i];
+        if (posz5[i] >= posz55[i]) {
+          posz5[i] = posz55[i];
+        }
+      }
+
+      let cx = cos(posx5[i]*0.01+t)*80;
+      let ny = map(noise(posy5[i]*0.01+t), 0, 1, -1, 1)*80;
+      let nz = noise(posz5[i]*0.01+t)*80;
+
+      vertex(posx5[i]+cx, posy5[i]+ny, -600+posz5[i]+nz);
+    }
+    endShape(CLOSE);
 
     //LIDERANÇAS-------------------------------------------------------------------
     for (let  i = 0; i < 9; i ++) {
@@ -995,7 +1086,6 @@ function draw() {
       translate(0, 0, -400);
       text("PRODUÇÂO MUSICAL", posx4[11]+cx11, posy4[11]+ny11);
       pop();
-
       textSize(10);
 
       let cx1 = cos(posx4[1]*0.01+t)*80;
@@ -1147,6 +1237,24 @@ function draw() {
       translate(0, 0, -400+posz4[10]-nz10);
       text("Lindaura Xukuru Kariri", posx4[10]+cx10, posy4[10]+ny10);
       pop();
+    }
+
+    ////OPRESSAO-------------------------------------------------------------------
+    for (let  i = 0; i < 28; i ++) {
+
+      let cx = cos(posx5[i]*0.01+t)*80;
+      let ny = map(noise(posy5[i]*0.01+t), 0, 1, -1, 1)*80;
+      let nz = noise(posz5[i]*0.01+t)*80;
+
+      noStroke();
+      fill(191,189,149);
+      if (i >= 1 && i <= 26) {
+        push();
+        translate(0, 0, -600+posz5[i]+nz);
+        rectMode(CENTER);
+        rect(posx5[i]+cx, posy5[i]+ny, 12, 12);
+        pop();
+      }
     }
 
     push();
