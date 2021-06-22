@@ -155,13 +155,13 @@ function setup() {
     velz4[i] = 4.7;
   }
 
-  for (let i = 0; i < 28; i++) {
-    posx5[i] = width/2+cos(i)*width;
-    posy5[i] = height/2+sin(i)*height;
+  for (let i = 0; i < 5; i++) {
+    posx5[i] = width/2+cos(i)*width/2;
+    posy5[i] = height/2+sin(i)*height/2;
     posz5[i] = 0-noise(i)*450;
 
-    posx55[i] = width/2+cos(i)*width;
-    posy55[i] = height/2+sin(i)*height;
+    posx55[i] = width/2+cos(i)*width/2;
+    posy55[i] = height/2+sin(i)*height/2;
     posz55[i] = 0-noise(i)*450;
 
     velx5[i] = 7.1;
@@ -225,7 +225,7 @@ function draw() {
     translate(0, 0, 0);
     beginShape();
     noFill();
-    stroke(240, 0, 0, 150);
+    stroke(240, 0, 0);
     for (let  i = 0; i < 9; i ++) {
 
       if (mouseIsPressed && posZ > -100 && posZ < 400) {
@@ -291,7 +291,7 @@ function draw() {
     endShape();
 
     beginShape();
-    stroke(50, 100, 0, 150);
+    stroke(50, 100, 0);
     for (let  i = 0; i < 15; i ++) {
       if (mouseIsPressed && posZ > 400 && posZ < 800) {
         if (dist(posx2[i], posy2[i], mouseX+cos(i*0.1)*10, mouseY+sin(i*0.1)*10) < 180) {
@@ -356,7 +356,7 @@ function draw() {
     endShape();
 
     beginShape();
-    stroke(50, 10, 200, 150);
+    stroke(50, 10, 200);
     for (let  i = 0; i < 10; i ++) {
 
       if (mouseIsPressed && posZ > 800 && posZ < 1200) {
@@ -422,7 +422,7 @@ function draw() {
     endShape();
 
     beginShape();
-    stroke(150, 110, 200, 150);
+    stroke(150, 110, 200);
     for (let  i = 0; i < 12; i ++) {
 
       if (mouseIsPressed && posZ > 800 && posZ < 1200) {
@@ -489,7 +489,7 @@ function draw() {
 
     beginShape(TRIANGLE_STRIP);
     stroke(20);
-    for (let  i = 0; i < 28; i ++) {
+    for (let  i = 0; i < 5; i ++) {
 
       if (mouseIsPressed && posZ > 0 && posZ < 400) {
         if (dist(posx5[i], posy5[i], mouseX+cos(i*0.1)*10, mouseY+sin(i*0.1)*10) < 180) {
@@ -549,7 +549,7 @@ function draw() {
       let ny = map(noise(posy5[i]*0.01+t), 0, 1, -1, 1)*80;
       let nz = noise(posz5[i]*0.01+t)*80;
 
-      vertex(posx5[i]+cx, posy5[i]+ny, -600+posz5[i]+nz);
+      vertex(posx5[i]+cx, posy5[i]+ny, posz5[i]+nz);
     }
     endShape(CLOSE);
 
@@ -568,7 +568,7 @@ function draw() {
         ellipse(posx1[i]+cx, posy1[i]+ny, 8, 8);
         pop();
       }
-      fill(240);
+      fill(240, 0, 0);
       textSize(20);
       let cx8 = cos(posx1[8]*0.01+t)*80;
       let ny8 = map(noise(posy1[8]*0.01+t), 0, 1, -1, 1)*80;
@@ -710,13 +710,13 @@ function draw() {
       let ny14 = map(noise(posy2[14]*0.01+t), 0, 1, -1, 1)*80;
 
       textSize(20);
-      fill(240);
+      fill(50, 100, 0);
       push();
       translate(0, 0, -200);
       text("ETNOMÍDIA", posx2[14]+cx14, posy2[14]+ny14);
       pop();
 
-      textSize(10);
+      textSize(15);
       let cx1 = cos(posx2[1]*0.01+t)*80;
       let ny1 = map(noise(posy2[1]*0.01+t), 0, 1, -1, 1)*80;
       let nz1 = noise(posz2[1]*0.01+t)*80;
@@ -933,13 +933,13 @@ function draw() {
       let cx9 = cos(posx3[9]*0.01+t)*80;
       let ny9 = map(noise(posy3[9]*0.01+t), 0, 1, -1, 1)*80;
       textSize(20);
-      fill(240);
+      fill(50, 10, 200);
       push();
       translate(0, 0, -400);
       text("CIRCUITO DAS ARTES", posx3[9]+cx9, posy3[9]+ny9);
       pop();
 
-      textSize(10);
+      textSize(15);
 
       let cx1 = cos(posx3[1]*0.01+t)*80;
       let ny1 = map(noise(posy3[1]*0.01+t), 0, 1, -1, 1)*80;
@@ -1081,13 +1081,13 @@ function draw() {
       let cx11 = cos(posx4[11]*0.01+t)*80;
       let ny11 = map(noise(posy4[11]*0.01+t), 0, 1, -1, 1)*80;
       textSize(20);
-      fill(240);
+      fill(150, 110, 200);
       push();
       translate(0, 0, -400);
       text("PRODUÇÂO MUSICAL", posx4[11]+cx11, posy4[11]+ny11);
       pop();
-      textSize(10);
 
+      textSize(15);
       let cx1 = cos(posx4[1]*0.01+t)*80;
       let ny1 = map(noise(posy4[1]*0.01+t), 0, 1, -1, 1)*80;
       let nz1 = noise(posz4[1]*0.01+t)*80;
@@ -1240,7 +1240,7 @@ function draw() {
     }
 
     ////OPRESSAO-------------------------------------------------------------------
-    for (let  i = 0; i < 28; i ++) {
+    for (let  i = 0; i < 5; i ++) {
 
       let cx = cos(posx5[i]*0.01+t)*80;
       let ny = map(noise(posy5[i]*0.01+t), 0, 1, -1, 1)*80;
@@ -1250,11 +1250,172 @@ function draw() {
       fill(191,189,149);
       if (i >= 1 && i <= 26) {
         push();
-        translate(0, 0, -600+posz5[i]+nz);
+        translate(0, 0, posz5[i]+nz);
         rectMode(CENTER);
         rect(posx5[i]+cx, posy5[i]+ny, 12, 12);
         pop();
       }
+
+      let cx0 = cos(posx5[0]*0.01+t)*80;
+      let ny0 = map(noise(posy5[0]*0.01+t), 0, 1, -1, 1)*80;
+      let nz0 = noise(posz5[1]*0.01+t)*80;
+      textSize(20);
+      fill(180);
+      push();
+      translate(0, 0,  posz5[0]-nz0);
+      text("OPRESSÃO", posx5[0]+cx0, posy5[0]+ny0);
+      pop();
+
+      textSize(15);
+      let cx1 = cos(posx5[1]*0.01+t)*80;
+      let ny1 = map(noise(posy5[1]*0.01+t), 0, 1, -1, 1)*80;
+      let nz1 = noise(posz5[1]*0.01+t)*80;
+      if (dist(posx5[1]+cx1, posy5[1]+ny1, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        opressao[1] = true;
+      } else {
+        fill(180);
+        opressao[1] = false;
+      }
+      push();
+      translate(0, 0, posz5[1]-nz1);
+      text("COVID 19", posx5[1]+cx1, posy5[1]+ny1);
+      pop();
+
+      let cx2 = cos(posx5[2]*0.01+t)*80;
+      let ny2 = map(noise(posy5[2]*0.01+t), 0, 1, -1, 1)*80;
+      let nz2 = noise(posz5[2]*0.01+t)*80;
+      if (dist(posx5[2]+cx2, posy5[2]+ny2, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        opressao[1] = true;
+      } else {
+        fill(180);
+        opressao[1] = false;
+      }
+      push();
+      translate(0, 0, posz5[2]-nz2);
+      text("Retiradas de Direitos", posx5[2]+cx2, posy5[2]+ny2);
+      pop();
+
+      let cx3 = cos(posx5[3]*0.01+t)*80;
+      let ny3 = map(noise(posy5[3]*0.01+t), 0, 1, -1, 1)*80;
+      let nz3 = noise(posz5[3]*0.01+t)*80;
+      if (dist(posx5[3]+cx3, posy5[3]+ny3, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        opressao[1] = true;
+      } else {
+        fill(180);
+        opressao[1] = false;
+      }
+      push();
+      translate(0, 0, posz5[3]-nz3);
+      text("Ameaça ao Território", posx5[3]+cx3, posy5[3]+ny3);
+      pop();
+
+      let cx4 = cos(posx5[4]*0.01+t)*80;
+      let ny4 = map(noise(posy5[4]*0.01+t), 0, 1, -1, 1)*80;
+      let nz4 = noise(posz5[4]*0.01+t)*80;
+      if (dist(posx5[4]+cx4, posy5[4]+ny4, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+        fill(240);
+        opressao[1] = true;
+      } else {
+        fill(180);
+        opressao[1] = false;
+      }
+      push();
+      translate(0, 0, posz5[4]-nz4);
+      text("Conflitos", posx5[4]+cx4, posy5[4]+ny4);
+      pop();
+
+      // let cx5 = cos(posx5[5]*0.01+t)*80;
+      // let ny5 = map(noise(posy5[5]*0.01+t), 0, 1, -1, 1)*80;
+      // let nz5 = noise(posz5[5]*0.01+t)*80;
+      // if (dist(posx5[5]+cx5, posy5[5]+ny5, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+      //   fill(240);
+      //   musica[5] = true;
+      // } else {
+      //   fill(180);
+      //   musica[5] = false;
+      // }
+      // push();
+      // translate(0, 0, posz5[5]-nz5);
+      // text("kandu puri", posx5[5]+cx5, posy5[5]+ny5);
+      // pop();
+      //
+      // let cx6 = cos(posx5[6]*0.01+t)*80;
+      // let ny6 = map(noise(posy5[6]*0.01+t), 0, 1, -1, 1)*80;
+      // let nz6 = noise(posz5[6]*0.01+t)*80;
+      // if (dist(posx5[6]+cx6, posy5[6]+ny6, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+      //   fill(240);
+      //   musica[6] = true;
+      // } else {
+      //   fill(180);
+      //   musica[6] = false;
+      // }
+      // push();
+      // translate(0, 0, posz5[6]-nz6);
+      // text("ian wapichana", posx5[6]+cx6, posy5[6]+ny6);
+      // pop();
+      //
+      // let cx7 = cos(posx5[7]*0.01+t)*80;
+      // let ny7 = map(noise(posy5[7]*0.01+t), 0, 1, -1, 1)*80;
+      // let nz7 = noise(posz5[7]*0.01+t)*80;
+      // if (dist(posx5[7]+cx7, posy5[7]+ny7, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+      //   fill(240);
+      //   musica[7] = true;
+      // } else {
+      //   fill(180);
+      //   musica[7] = false;
+      // }
+      // push();
+      // translate(0, 0, posz5[7]-nz7);
+      // text("kae guajajara", posx5[7]+cx7, posy5[7]+ny7);
+      // pop();
+      //
+      // let cx8 = cos(posx5[8]*0.01+t)*80;
+      // let ny8 = map(noise(posy5[8]*0.01+t), 0, 1, -1, 1)*80;
+      // let nz8 = noise(posz5[8]*0.01+t)*80;
+      // if (dist(posx5[8]+cx8, posy5[8]+ny8, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+      //   fill(240);
+      //   musica[8] = true;
+      // } else {
+      //   fill(180);
+      //   musica[8] = false;
+      // }
+      // push();
+      // translate(0, 0, posz5[8]-nz8);
+      // text("brisa flow", posx5[8]+cx8, posy5[8]+ny8);
+      // pop();
+      //
+      // let cx9 = cos(posx5[9]*0.01+t)*80;
+      // let ny9 = map(noise(posy5[9]*0.01+t), 0, 1, -1, 1)*80;
+      // let nz9 = noise(posz5[9]*0.01+t)*80;
+      // if (dist(posx5[9]+cx8, posy5[9]+ny9, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+      //   fill(240);
+      //   musica[9] = true;
+      // } else {
+      //   fill(180);
+      //   musica[9] = false;
+      // }
+      // push();
+      // translate(0, 0, posz5[9]-nz9);
+      // text("paka noe koi", posx5[9]+cx9, posy5[9]+ny9);
+      // pop();
+      //
+      // let cx10 = cos(posx5[10]*0.01+t)*80;
+      // let ny10 = map(noise(posy5[10]*0.01+t), 0, 1, -1, 1)*80;
+      // let nz10 = noise(posz5[10]*0.01+t)*80;
+      // if (dist(posx5[10]+cx10, posy5[10]+ny10, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
+      //   fill(240);
+      //   musica[10] = true;
+      // } else {
+      //   fill(180);
+      //   musica[10] = false;
+      // }
+      // push();
+      // translate(0, 0, posz5[10]-nz10);
+      // text("Lindaura Xukuru Kariri", posx5[10]+cx10, posy5[10]+ny10);
+      // pop();
     }
 
     push();
@@ -1397,6 +1558,6 @@ function mouseReleased() {
 
 function mouseWheel(event) {
   let inc = keyIsPressed & keyCode == CONTROL ? -1.0 : 1.0;
-  posZ = constrain(posZ + event.delta*inc, -200, 1200);
+  posZ = constrain(posZ + event.delta*inc, -200, 1000);
   //scl += event.delta;
 }
