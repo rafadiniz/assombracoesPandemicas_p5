@@ -1,6 +1,7 @@
 let telai;
-//let onca;
-var amazonia;
+let onca;
+let amazonia;
+let arvore;
 //let caborja;
 
 //let botaoO = false;
@@ -93,6 +94,8 @@ var font;
 function preload() {
   amazonia = loadImage('img/amaz.jpg');
   telai = loadImage('img/tela_inicial.jpg');
+  arvore = loadImage('img/arvore.jpeg');
+  onca = loadImage('img/baniwa2.png');
 }
 
 
@@ -174,6 +177,8 @@ function setup() {
   textSize(40);
 
   amazonia.resize(1280/4, 720/4);
+  arvore.resize(400,400);
+  onca.resize(400,200);
 
   smooth();
 }
@@ -488,7 +493,8 @@ function draw() {
     endShape();
 
     beginShape(TRIANGLE_STRIP);
-    stroke(20);
+    strokeWeight(0.6);
+    stroke(220,220,50);
     for (let  i = 0; i < 5; i ++) {
 
       if (mouseIsPressed && posZ > 0 && posZ < 400) {
@@ -581,9 +587,6 @@ function draw() {
 
       if (dist(posx1[1]+cx1, posy1[1]+ny1, mouseX, mouseY) < 50 && posZ > -100 && posZ < 400) {
         fill(240);
-        img = createImg('img/sonia-guajajarajpg-03052021211741293.jpeg');
-        img.position(1090, 20);
-        img.size(600, 400);
         lideranças[1] = true;
       } else {
         fill(200, 100, 15);
@@ -1239,7 +1242,7 @@ function draw() {
       pop();
     }
 
-    ////OPRESSAO-------------------------------------------------------------------
+    ////LUTAS-------------------------------------------------------------------
     for (let  i = 0; i < 5; i ++) {
 
       let cx = cos(posx5[i]*0.01+t)*80;
@@ -1247,7 +1250,7 @@ function draw() {
       let nz = noise(posz5[i]*0.01+t)*80;
 
       noStroke();
-      fill(191,189,149);
+      fill(255,240,10);
       if (i >= 1 && i <= 26) {
         push();
         translate(0, 0, posz5[i]+nz);
@@ -1263,7 +1266,7 @@ function draw() {
       fill(180);
       push();
       translate(0, 0,  posz5[0]-nz0);
-      text("OPRESSÃO", posx5[0]+cx0, posy5[0]+ny0);
+      text("LUTAS", posx5[0]+cx0, posy5[0]+ny0);
       pop();
 
       textSize(15);
@@ -1327,104 +1330,32 @@ function draw() {
       text("Conflitos", posx5[4]+cx4, posy5[4]+ny4);
       pop();
 
-      // let cx5 = cos(posx5[5]*0.01+t)*80;
-      // let ny5 = map(noise(posy5[5]*0.01+t), 0, 1, -1, 1)*80;
-      // let nz5 = noise(posz5[5]*0.01+t)*80;
-      // if (dist(posx5[5]+cx5, posy5[5]+ny5, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
-      //   fill(240);
-      //   musica[5] = true;
-      // } else {
-      //   fill(180);
-      //   musica[5] = false;
-      // }
-      // push();
-      // translate(0, 0, posz5[5]-nz5);
-      // text("kandu puri", posx5[5]+cx5, posy5[5]+ny5);
-      // pop();
-      //
-      // let cx6 = cos(posx5[6]*0.01+t)*80;
-      // let ny6 = map(noise(posy5[6]*0.01+t), 0, 1, -1, 1)*80;
-      // let nz6 = noise(posz5[6]*0.01+t)*80;
-      // if (dist(posx5[6]+cx6, posy5[6]+ny6, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
-      //   fill(240);
-      //   musica[6] = true;
-      // } else {
-      //   fill(180);
-      //   musica[6] = false;
-      // }
-      // push();
-      // translate(0, 0, posz5[6]-nz6);
-      // text("ian wapichana", posx5[6]+cx6, posy5[6]+ny6);
-      // pop();
-      //
-      // let cx7 = cos(posx5[7]*0.01+t)*80;
-      // let ny7 = map(noise(posy5[7]*0.01+t), 0, 1, -1, 1)*80;
-      // let nz7 = noise(posz5[7]*0.01+t)*80;
-      // if (dist(posx5[7]+cx7, posy5[7]+ny7, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
-      //   fill(240);
-      //   musica[7] = true;
-      // } else {
-      //   fill(180);
-      //   musica[7] = false;
-      // }
-      // push();
-      // translate(0, 0, posz5[7]-nz7);
-      // text("kae guajajara", posx5[7]+cx7, posy5[7]+ny7);
-      // pop();
-      //
-      // let cx8 = cos(posx5[8]*0.01+t)*80;
-      // let ny8 = map(noise(posy5[8]*0.01+t), 0, 1, -1, 1)*80;
-      // let nz8 = noise(posz5[8]*0.01+t)*80;
-      // if (dist(posx5[8]+cx8, posy5[8]+ny8, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
-      //   fill(240);
-      //   musica[8] = true;
-      // } else {
-      //   fill(180);
-      //   musica[8] = false;
-      // }
-      // push();
-      // translate(0, 0, posz5[8]-nz8);
-      // text("brisa flow", posx5[8]+cx8, posy5[8]+ny8);
-      // pop();
-      //
-      // let cx9 = cos(posx5[9]*0.01+t)*80;
-      // let ny9 = map(noise(posy5[9]*0.01+t), 0, 1, -1, 1)*80;
-      // let nz9 = noise(posz5[9]*0.01+t)*80;
-      // if (dist(posx5[9]+cx8, posy5[9]+ny9, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
-      //   fill(240);
-      //   musica[9] = true;
-      // } else {
-      //   fill(180);
-      //   musica[9] = false;
-      // }
-      // push();
-      // translate(0, 0, posz5[9]-nz9);
-      // text("paka noe koi", posx5[9]+cx9, posy5[9]+ny9);
-      // pop();
-      //
-      // let cx10 = cos(posx5[10]*0.01+t)*80;
-      // let ny10 = map(noise(posy5[10]*0.01+t), 0, 1, -1, 1)*80;
-      // let nz10 = noise(posz5[10]*0.01+t)*80;
-      // if (dist(posx5[10]+cx10, posy5[10]+ny10, mouseX, mouseY) < 50 && posZ > 800 && posZ < 1200) {
-      //   fill(240);
-      //   musica[10] = true;
-      // } else {
-      //   fill(180);
-      //   musica[10] = false;
-      // }
-      // push();
-      // translate(0, 0, posz5[10]-nz10);
-      // text("Lindaura Xukuru Kariri", posx5[10]+cx10, posy5[10]+ny10);
-      // pop();
     }
 
+    // //-----onça
+    // push();
+    // translate(0, 500, -1300);
+    // for (let x = 0; x < onca.width; x += 12) {
+    //   for (let y = 0; y < onca.height; y += 12) {
+    //     let c = onca.get(x, y);
+    //
+    //     noStroke();
+    //     fill(c);
+    //     rect(x+cos(x*0.01+t)*50, y+sin(y*0.05+t)*50,12,12);
+    //   }
+    // }
+    // //image(onca,0,0);
+    // pop();
+
+
+    //-----floresta amazonia
     push();
-    translate(-50, height-100, -800);
+    translate(-300, height-100, -800);
     rotateX(radians(448));
     beginShape(LINE_LOOP);
-    for (let x = 0; x < width; x+= 15) {
+    for (let x = 0; x < width+500; x+= 15) {
       for (let y = 0; y < height; y+= 15) {
-        let c = amazonia.get(int(x*0.25), int(y*0.25));
+        let c = amazonia.get(int(x*0.05), int(y*0.25));
 
         let d = dist(x, y, mouseX+cos(x*0.1)*2, mouseY+sin(y*0.1)*2);
         let mD = dist(0, 0, width/2, height/2);
@@ -1439,54 +1370,97 @@ function draw() {
     }
     endShape();
     pop();
+
+
+    // push();
+    // translate(0, 0, -400);
+    // //beginShape(LINE_LOOP);
+    // for (let x = 0; x < onca.width; x+= 4) {
+    //   for (let y = 0; y < onca.height; y+= 4) {
+    //     let c = onca.get(int(x), int(y));
+    //     let b = saturation(c);
+    //     let z = map(b, 0, 255, -200, 0);
+    //
+    //     let nx = noise(x*0.1+t)*80;
+    //     let ny = noise(y*0.1+t)*80;
+    //
+    //     noStroke();
+    //     fill(c,127+sin(b*0.1+t)*127);
+    //     push();
+    //     translate(x,y,z);
+    //     rect(0, 0,4,4);
+    //     pop();
+    //   }
+    // }
+    // //endShape();
+    // pop();
   }
+
+
+
+
+
+
 }
 
 function mousePressed() {
   //LIDERANÇAS
   if (lideranças[1]) {
-    img = window.open('https://www.instagram.com/guajajarasonia/');
+    img = createImg('img/sonia-guajajarajpg-03052021211741293.jpeg');
+    img.position(1090, 20);
+    img.size(600, 400);
+
+    let div = createDiv('Sônia Guajajara é uma líder indígena brasileira.É formada em Letras e em Enfermagem, especialista em Educação especial pela Universidade Estadual do Maranhão. Recebeu em 2015 a Ordem do Mérito Cultural Sua militância em ocupações e protestos começou na coordenação das organizações e articulações dos povos indígenas no Maranhão (COAPIMA) e levou-a à coordenação executiva da Articulação dos Povos Indígenas do Brasil (APIB) antes disso ainda passou pela Coordenação das Organizações Indígenas da Amazônia Brasileira (COIAB)');
+    div.style('font-size', '16px');
+    div.style('color', 'white');
+    div.position(1090, 430);
+
+    let l1 = createA('https://www.instagram.com/guajajarasonia/', 'instagram', '_blank');
+    l1.style('color', 'blue');
+    l1.position(1090, 550);
+
+    //img = window.open('https://www.instagram.com/guajajarasonia/');
   }
   if (lideranças[2]) {
-    img = window.open('https://pt.wikipedia.org/wiki/Ailton_Krenak');
+    //img = window.open('https://pt.wikipedia.org/wiki/Ailton_Krenak');
   }
   if (lideranças[3]) {
-    img = window.open('https://www.instagram.com/celia.xakriaba/');
+    //img = window.open('https://www.instagram.com/celia.xakriaba/');
   }
   if (lideranças[4]) {
-    img = window.open("https://www.behance.net/denilsonbaniwa");
+    //img = window.open("https://www.behance.net/denilsonbaniwa");
   }
   if (lideranças[5]) {
-    img = window.open("https://www.instagram.com/jaider_esbell/");
+    //img = window.open("https://www.instagram.com/jaider_esbell/");
   }
   if (lideranças[6]) {
-    img = window.open("https://pt.wikipedia.org/wiki/Babau_Tupinamb%C3%A1");
+    //img = window.open("https://pt.wikipedia.org/wiki/Babau_Tupinamb%C3%A1");
   }
   if (lideranças[7]) {
-    img = window.open("https://www.instagram.com/daiaratukano/");
+    //img = window.open("https://www.instagram.com/daiaratukano/");
   }
 
   //ETNOMIDIA
   if (etnomidia[1]) {
-    img = window.open("https://www.instagram.com/midiaindiaoficial/");
+    //img = window.open("https://www.instagram.com/midiaindiaoficial/");
   }
   if (etnomidia[2]) {
-    img = window.open("https://radioyande.com/");
+    //img = window.open("https://radioyande.com/");
   }
   if (etnomidia[3]) {
-    img = window.open("http://www.videonasaldeias.org.br/2009/");
+    //img = window.open("http://www.videonasaldeias.org.br/2009/");
   }
   if (etnomidia[4]) {
-    img = window.open("https://www.instagram.com/tingui.filmes/");
+    //img = window.open("https://www.instagram.com/tingui.filmes/");
   }
   if (etnomidia[5]) {
-    img = window.open("selvagemciclo.com.br");
+    //img = window.open("selvagemciclo.com.br");
   }
   if (etnomidia[6]) {
-    img = window.open("https://www.instagram.com/cristianwariu/");
+    //img = window.open("https://www.instagram.com/cristianwariu/");
   }
   if (etnomidia[7]) {
-    img = window.open("https://www.instagram.com/apiboficial/");
+    //img = window.open("https://www.instagram.com/apiboficial/");
   }
   if (etnomidia[8]) {
     img = window.open("https://www.instagram.com/alice_pataxo/");
@@ -1553,6 +1527,12 @@ function mouseReleased() {
   }
   for (let i = 0; i < 8; i++) {
     artes[i] = false;
+  }
+  for (let i = 0; i < 12; i++) {
+    musica[i] = false;
+  }
+  for (let i = 0; i < 5; i++) {
+    opressao[i] = false;
   }
 }
 
