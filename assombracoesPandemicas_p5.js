@@ -643,10 +643,9 @@ function draw() {
       let nz4 = noise(posz1[4]*0.01+t)*80;
       if (dist(posx1[4]+cx4, posy1[4]+ny4, mouseX, mouseY) < 50 && posZ > -100 && posZ < 400) {
         fill(240);
-        lideranças[4] = true;
+        chaves('lideranças',4);
       } else {
         fill(200, 100, 15);
-        lideranças[4] = false;
       }
       push();
       translate(0, 0, posz1[4]-nz4);
@@ -658,10 +657,9 @@ function draw() {
       let nz5 = noise(posz1[5]*0.01+t)*80;
       if (dist(posx1[5]+cx5, posy1[5]+ny5, mouseX, mouseY) < 50 && posZ > -100 && posZ < 400) {
         fill(240);
-        lideranças[5] = true;
+        chaves('lideranças',5);
       } else {
         fill(200, 100, 15);
-        lideranças[5] = false;
       }
       push();
       translate(0, 0, posz1[5]-nz5);
@@ -673,10 +671,9 @@ function draw() {
       let nz6 = noise(posz1[6]*0.01+t)*80;
       if (dist(posx1[6]+cx6, posy1[6]+ny6, mouseX, mouseY) < 50 && posZ > -100 && posZ < 400) {
         fill(240);
-        lideranças[6] = true;
+        chaves('lideranças',6);
       } else {
         fill(200, 100, 15);
-        lideranças[6] = false;
       }
       push();
       translate(0, 0, posz1[6]-nz6);
@@ -688,10 +685,9 @@ function draw() {
       let nz7 = noise(posz1[7]*0.01+t)*80;
       if (dist(posx1[7]+cx7, posy1[7]+ny7, mouseX, mouseY) < 50 && posZ > -100 && posZ < 400) {
         fill(240);
-        lideranças[7] = true;
+        chaves('lideranças',7);
       } else {
         fill(200, 100, 15);
-        lideranças[7] = false;
       }
       push();
       translate(0, 0, posz1[7]-nz7);
@@ -1416,14 +1412,16 @@ function mousePressed() {
     //removeElements();
 
     img = createImg('img/sonia-guajajarajpg-03052021211741293.jpeg');
+    img.style('background', 'black');
     img.position(1090, 20);
     img.size(600, 400);
 
     let div = createDiv('Sônia Guajajara é uma líder indígena brasileira.É formada em Letras e em Enfermagem, especialista em Educação especial pela Universidade Estadual do Maranhão. Recebeu em 2015 a Ordem do Mérito Cultural Sua militância em ocupações e protestos começou na coordenação das organizações e articulações dos povos indígenas no Maranhão (COAPIMA) e levou-a à coordenação executiva da Articulação dos Povos Indígenas do Brasil (APIB) antes disso ainda passou pela Coordenação das Organizações Indígenas da Amazônia Brasileira (COIAB)');
-    div.style('font-size', '16px');
+    div.style('font-size', '14px');
     div.style('color', 'white');
     div.style('background', 'black');
     div.position(1090, 430);
+    div.size(800,600);
 
     let l1 = createA('https://www.instagram.com/guajajarasonia/', 'instagram', '_blank');
     l1.style('color', 'red');
@@ -1436,14 +1434,16 @@ function mousePressed() {
     //removeElements();
 
     img = createImg('img/krenak_joao_kehl.jpg');
+    img.style('background', 'black');
     img.position(1090, 20);
     img.size(600, 400);
 
     let div = createDiv('Ailton Krenak (Minas Gerais, 29 de setembro de 1953), é um líder indígena, ambientalista, filósofo, poeta e escritor brasileiro da etnia indígena crenaque. Ailton é também professor Honoris Causa pela Universidade Federal de Juiz de Fora (UFJF) e é considerado uma das maiores lideranças do movimento indígena brasileiro, possuindo reconhecimento internacional.');
-    div.style('font-size', '16px');
+    div.style('font-size', '14px');
     div.style('color', 'white');
     div.style('background', 'black');
     div.position(1090, 430);
+    div.size(800,600);
 
     let l1 = createA('https://www.instagram.com/_ailtonkrenak/', 'instagram', '_blank');
     l1.style('color', 'red');
@@ -1452,27 +1452,103 @@ function mousePressed() {
   }
   if (lideranças[3]) {
 
+    img = createImg('0.png');
+    img.style('background', 'black');
+    img.position(1090, 20);
+    img.size(600, 400);
+
     let div = createDiv('Celia Xakriabá');
-    div.style('font-size', '16px');
+    div.style('font-size', '14px');
     div.style('color', 'white');
+    div.style('background', 'black');
     div.position(1090, 430);
+    div.size(800,600);
 
     let l1 = createA('https://www.instagram.com/celia.xakriaba/', 'instagram', '_blank');
     l1.style('color', 'red');
+    l1.style('background', 'black');
     l1.position(1090, 550);
 
     //img = window.open('https://www.instagram.com/celia.xakriaba/');
   }
   if (lideranças[4]) {
+
+    img = createImg('0.png');
+    img.style('background', 'black');
+    img.position(1090, 20);
+    img.size(600, 400);
+
+    let div = createDiv('Denilson Baniwa');
+    div.style('font-size', '14px');
+    div.style('color', 'white');
+    div.style('background', 'black');
+    div.position(1090, 430);
+    div.size(800,600);
+
+    let l1 = createA('https://www.behance.net/denilsonbaniwa', 'instagram', '_blank');
+    l1.style('color', 'red');
+    l1.style('background', 'black');
+    l1.position(1090, 550);
     //img = window.open("https://www.behance.net/denilsonbaniwa");
   }
   if (lideranças[5]) {
+    img = createImg('0');
+    img.style('background', 'black');
+    img.position(1090, 20);
+    img.size(600, 400);
+
+    let div = createDiv('Jaider Esbell');
+    div.style('font-size', '14px');
+    div.style('color', 'white');
+    div.style('background', 'black');
+    div.position(1090, 430);
+    div.size(800,600);
+
+    let l1 = createA('https://www.instagram.com/jaider_esbell/', 'instagram', '_blank');
+    l1.style('color', 'red');
+    l1.style('background', 'black');
+    l1.position(1090, 550);
+
     //img = window.open("https://www.instagram.com/jaider_esbell/");
   }
   if (lideranças[6]) {
+    img = createImg('0');
+    img.style('background', 'black');
+    img.position(1090, 20);
+    img.size(600, 400);
+
+    let div = createDiv('Babau Tupinamba');
+    div.style('font-size', '14px');
+    div.style('color', 'white');
+    div.style('background', 'black');
+    div.position(1090, 430);
+    div.size(800,600);
+
+    let l1 = createA('https://pt.wikipedia.org/wiki/Babau_Tupinambá', 'instagram', '_blank');
+    l1.style('color', 'red');
+    l1.style('background', 'black');
+    l1.position(1090, 550);
+
     //img = window.open("https://pt.wikipedia.org/wiki/Babau_Tupinamb%C3%A1");
   }
   if (lideranças[7]) {
+    img = createImg('0');
+    img.style('background', 'black');
+    img.position(1090, 20);
+    img.size(600, 400);
+
+    let div = createDiv('Daiara Tukano');
+    div.style('font-size', '14px');
+    div.style('color', 'white');
+    div.style('background', 'black');
+    div.position(1090, 430);
+    div.size(800,600);
+
+    let l1 = createA('https://www.instagram.com/daiaratukano/', 'instagram', '_blank');
+    l1.style('color', 'red');
+    l1.style('background', 'black');
+    l1.position(1090, 550);
+
     //img = window.open("https://www.instagram.com/daiaratukano/");
   }
 
