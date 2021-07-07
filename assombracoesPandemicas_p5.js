@@ -78,6 +78,8 @@ let artes = [];
 let musica = [];
 let opressao = [];
 
+let slider;
+
 // let conX, conY;
 
 //let alpha1 = 0;
@@ -176,6 +178,14 @@ function setup() {
   textFont(font);
   textSize(40);
 
+  let d = createDiv();
+  d.style('padding-left: 20px;');
+  d.style('transform-origin: 0 50% 0');
+  d.style('transform: rotate(90deg);');
+  d.position(width-30, 10);
+  slider = createSlider(-200, 1000, -100, 10);
+  d.child(slider);
+
   amazonia.resize(1280/4, 720/4);
   arvore.resize(400,400);
   onca.resize(400,200);
@@ -185,6 +195,9 @@ function setup() {
 
 
 function draw() {
+  posZ = slider.value();
+
+
   translate(-width/2, -height/2);
   background(0);
 
@@ -587,10 +600,9 @@ function draw() {
 
       if (dist(posx1[1]+cx1, posy1[1]+ny1, mouseX, mouseY) < 50 && posZ > -100 && posZ < 400) {
         fill(240);
-        lideranças[1] = true;
+        chaves('lideranças',1);
       } else {
         fill(200, 100, 15);
-        lideranças[1] = false;
       }
       push();
       translate(0, 0, posz1[1]-nz1);
@@ -602,14 +614,9 @@ function draw() {
       let nz2 = noise(posz1[2]*0.01+t)*80;
       if (dist(posx1[2]+cx2, posy1[2]+ny2, mouseX, mouseY) < 50 && posZ > -100 && posZ < 400) {
         fill(240);
-        fill(240);
-        img = createImg('img/krenak_joao_kehl.jpg');
-        img.position(1090, 20);
-        img.size(600, 400);
-        lideranças[2] = true;
+        chaves('lideranças',2);
       } else {
         fill(200, 100, 15);
-        lideranças[2] = false;
       }
 
       push();
@@ -622,10 +629,9 @@ function draw() {
       let nz3 = noise(posz1[3]*0.01+t)*80;
       if (dist(posx1[3]+cx3, posy1[3]+ny3, mouseX, mouseY) < 50 && posZ > -100 && posZ < 400) {
         fill(240);
-        lideranças[3] = true;
+        chaves('lideranças',3);
       } else {
         fill(200, 100, 15);
-        lideranças[3] = false;
       }
       push();
       translate(0, 0, posz1[3]-nz3);
@@ -1397,15 +1403,18 @@ function draw() {
   }
 
 
-
-
-
+  // let div = createFooter('2021');
+  // div.style('font-size', '16px');
+  // div.style('color', 'white');
+  // div.position(1090, 430);
 
 }
 
 function mousePressed() {
   //LIDERANÇAS
   if (lideranças[1]) {
+    //removeElements();
+
     img = createImg('img/sonia-guajajarajpg-03052021211741293.jpeg');
     img.position(1090, 20);
     img.size(600, 400);
@@ -1413,18 +1422,45 @@ function mousePressed() {
     let div = createDiv('Sônia Guajajara é uma líder indígena brasileira.É formada em Letras e em Enfermagem, especialista em Educação especial pela Universidade Estadual do Maranhão. Recebeu em 2015 a Ordem do Mérito Cultural Sua militância em ocupações e protestos começou na coordenação das organizações e articulações dos povos indígenas no Maranhão (COAPIMA) e levou-a à coordenação executiva da Articulação dos Povos Indígenas do Brasil (APIB) antes disso ainda passou pela Coordenação das Organizações Indígenas da Amazônia Brasileira (COIAB)');
     div.style('font-size', '16px');
     div.style('color', 'white');
+    div.style('background', 'black');
     div.position(1090, 430);
 
     let l1 = createA('https://www.instagram.com/guajajarasonia/', 'instagram', '_blank');
-    l1.style('color', 'blue');
+    l1.style('color', 'red');
+    l1.style('background', 'black');
     l1.position(1090, 550);
 
     //img = window.open('https://www.instagram.com/guajajarasonia/');
   }
   if (lideranças[2]) {
-    //img = window.open('https://pt.wikipedia.org/wiki/Ailton_Krenak');
+    //removeElements();
+
+    img = createImg('img/krenak_joao_kehl.jpg');
+    img.position(1090, 20);
+    img.size(600, 400);
+
+    let div = createDiv('Ailton Krenak (Minas Gerais, 29 de setembro de 1953), é um líder indígena, ambientalista, filósofo, poeta e escritor brasileiro da etnia indígena crenaque. Ailton é também professor Honoris Causa pela Universidade Federal de Juiz de Fora (UFJF) e é considerado uma das maiores lideranças do movimento indígena brasileiro, possuindo reconhecimento internacional.');
+    div.style('font-size', '16px');
+    div.style('color', 'white');
+    div.style('background', 'black');
+    div.position(1090, 430);
+
+    let l1 = createA('https://www.instagram.com/_ailtonkrenak/', 'instagram', '_blank');
+    l1.style('color', 'red');
+    l1.style('background', 'black');
+    l1.position(1090, 550);
   }
   if (lideranças[3]) {
+
+    let div = createDiv('Celia Xakriabá');
+    div.style('font-size', '16px');
+    div.style('color', 'white');
+    div.position(1090, 430);
+
+    let l1 = createA('https://www.instagram.com/celia.xakriaba/', 'instagram', '_blank');
+    l1.style('color', 'red');
+    l1.position(1090, 550);
+
     //img = window.open('https://www.instagram.com/celia.xakriaba/');
   }
   if (lideranças[4]) {
@@ -1540,4 +1576,19 @@ function mouseWheel(event) {
   let inc = keyIsPressed & keyCode == CONTROL ? -1.0 : 1.0;
   posZ = constrain(posZ + event.delta*inc, -200, 1000);
   //scl += event.delta;
+}
+
+function chaves(grupo,num){
+  if(grupo == 'lideranças'){
+    lideranças[num] = true
+    for(let i = 0; i < 15; i++){
+      if(i != num){
+        lideranças[i] = false
+      }
+    etnomidia[i] = false
+    artes[i] = false
+    musica[i] = false
+    opressao[i] = false
+    }
+  }
 }
